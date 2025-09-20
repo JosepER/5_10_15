@@ -8,7 +8,7 @@ let threeButton = document.getElementById("three");
 let fourButton = document.getElementById("four");
 let fiveButton = document.getElementById("five");
 let opponentMoveValueDisplay  = document.getElementById("opponent-move-value");
-
+let statusMessage = document.getElementById("status-message");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -55,13 +55,26 @@ function update(button) {
         opponentMoveValueDisplay.textContent = opponentMoveValue;
         
         if (computerScore > 10) {
-            gameOver = true;
+            endGame();
         }
     }
     updateTurnUI();
     
 }
 
+function endGame() {
+    gameOver = true;
+    if ((playerScore > computerScore && playerScore <= 15) || (playerScore <= 15 && computerScore > 15)) {
+        statusMessage.textContent = "You win!";
+        statusMessage.style.color = "green";
+    } else if (playerScore === computerScore || (playerScore > 15 && computerScore > 15)) {
+        statusMessage.textContent = "It's a tie!";
+        statusMessage.style.color = "orange";   
+    } else {
+        statusMessage.textContent = "You lose!";
+        statusMessage.style.color = "red";
+    }
+}
 
 oneButton.addEventListener("click", function() { update(1); });
 twoButton.addEventListener("click", function() { update(2); });
