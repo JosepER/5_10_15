@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 10 ... 15!</title>
+
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <h1> 5 10 ... 15!</h1>
+    
+    <div class="grid-container">
+        <div class="grid-item item-1">Turn</div>
+        <div class="grid-item item-2">Score</div>
+        <div class="grid-item item-3" id="player-turn">It's player's turn</div>
+        <div class="grid-item item-4" id="computer-turn">It's computer's turn</div>
+        <div class="grid-item item-5">Player</div>
+        <div class="grid-item item-6">Computer</div>
+        <div class="grid-item item-7" id="player-score-display">0</div>
+        <div class="grid-item item-8" id="computer-score-display">0</div>
+    </div>
+
+    <div class="button-container">
+        <button id="one">+1</button>
+        <button id="two">+2</button>
+        <button id="three">+3</button>
+        <button id="four">+4</button>
+        <button id="five">+5</button>
+
+    </div>
+    <div id="opponent-move">
+        <p>Opponent's move: <span id="opponent-move-value"></span></p>
+    </div>
+    
+     <script src="src/main.js" defer></script>
+
+</body>
+</html>
