@@ -21,12 +21,22 @@ function updateTurnUI() {
         playerTurn.style.display = "block";
         playerTurn.style.color = "green";
         computerTurn.style.display = "none";
-        computerScoreDisplay.style.color = "black";
+        
+        // Highlight player score, dim computer score
+        playerScoreDisplay.classList.add("score-active");
+        playerScoreDisplay.classList.remove("score-inactive");
+        computerScoreDisplay.classList.add("score-inactive");
+        computerScoreDisplay.classList.remove("score-active");
     } else {
         computerTurn.style.display = "block";
         computerTurn.style.color = "green";
         playerTurn.style.display = "none";
-        playerScoreDisplay.style.color = "black";
+        
+        // Highlight computer score, dim player score
+        computerScoreDisplay.classList.add("score-active");
+        computerScoreDisplay.classList.remove("score-inactive");
+        playerScoreDisplay.classList.add("score-inactive");
+        playerScoreDisplay.classList.remove("score-active");
     }
 }
 updateTurnUI();
@@ -75,7 +85,6 @@ function endGame() {
         statusMessage.style.color = "red";
     }
 }
-
 oneButton.addEventListener("click", function() { update(1); });
 twoButton.addEventListener("click", function() { update(2); });
 threeButton.addEventListener("click", function() { update(3); });
