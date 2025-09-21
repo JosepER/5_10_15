@@ -9,6 +9,8 @@ let fourButton = document.getElementById("four");
 let fiveButton = document.getElementById("five");
 let opponentMoveValueDisplay  = document.getElementById("opponent-move-value");
 let statusMessage = document.getElementById("status-message");
+let resetButton = document.getElementById("reset-button");
+
 
 let playerScore = 0;
 let computerScore = 0;
@@ -85,25 +87,32 @@ function endGame() {
         statusMessage.style.color = "red";
     }
 }
+
+function resetGame() {
+  // Reset scores
+  playerScore = 0;
+  computerScore = 0;
+  
+  // Reset UI
+  playerScoreDisplay.textContent = "0";
+  computerScoreDisplay.textContent = "0";
+  
+  // Reset game state
+  gameOver = false;
+  currentPlayer = "player";
+  
+  // Reset status messages
+  statusMessage.textContent = "Game in progress...";
+  statusMessage.style.color = ""; // Reset to default color
+  opponentMoveValueDisplay.textContent = "-";
+  
+  // Update UI to reflect player's turn
+  updateTurnUI();
+}
+
 oneButton.addEventListener("click", function() { update(1); });
 twoButton.addEventListener("click", function() { update(2); });
 threeButton.addEventListener("click", function() { update(3); });
 fourButton.addEventListener("click", function() { update(4); });
 fiveButton.addEventListener("click", function() { update(5); });
-
-function render() {
-    // Rendering logic would go here if needed
-}   
-
-
-        // // Uptate scores
-        // playerScoreDisplay.textContent = playerScore;
-        // computerScoreDisplay.textContent = computerScore;
-
-        // // Check for win condition
-        // if (playerScore > 10) {
-        //     gameOver = true;
-        // } else if (computerScore > 10) {
-        //     gameOver = true;
-        // }
-
+resetButton.addEventListener("click", resetGame);
