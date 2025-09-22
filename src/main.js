@@ -10,6 +10,10 @@ let fiveButton = document.getElementById("five");
 let opponentMoveValueDisplay  = document.getElementById("opponent-move-value");
 let statusMessage = document.getElementById("status-message");
 let resetButton = document.getElementById("reset-button");
+let howToPlayButton = document.getElementById("how-to-play-button");
+let howToPlayModal = document.getElementById("how-to-play-modal");
+let closeHowToPlay = document.getElementById("close-how-to-play");
+let lastFocused;
 
 
 let playerScore = 0;
@@ -44,7 +48,6 @@ function updateTurnUI() {
 updateTurnUI();
 
 function update(button) {
-    // Game logic would go here if needed
     if (gameOver){
         alert("Game Over!"); // Add later on who won
     }
@@ -109,6 +112,36 @@ function resetGame() {
   // Update UI to reflect player's turn
   updateTurnUI();
 }
+
+// Open modal
+function openHowToPlay() {
+  lastFocused = document.activeElement;
+  howToPlayModal.hidden = false;
+  closeHowToPlay.focus();
+  document.addEventListener("keydown", escListener);
+}
+
+// Close modal
+function closeHowToPlayModal() {
+  howToPlayModal.hidden = true;
+  document.removeEventListener("keydown", escListener);
+  if (lastFocused) lastFocused.focus();
+}
+
+// ESC key handler
+function escListener(e) {
+  if (e.key === "Escape") {
+    closeHowToPlayModal();
+  }
+}
+
+// Outside click closes modal
+howToPlayModal?.addEventListener("click", (e) => {
+  if (e.target === howToPlayModal) closeHowToPlayModal();
+});
+
+howToPlayButton.addEventListener("click", openHowToPlay);
+closeHowToPlay.addEventListener("click", closeHowToPlayModal);
 
 oneButton.addEventListener("click", function() { update(1); });
 twoButton.addEventListener("click", function() { update(2); });

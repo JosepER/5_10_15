@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
-    <h1>5 10 ... 15!</h1>
+
+    <button id="how-to-play-button" aria-haspopup="dialog" aria-controls="how-to-play-modal">How to Play</button>
+
+    <h1>5, 10 ... 15!</h1>
     
     <div class="grid-container">
         <div class="grid-item item-1">Turn</div>
@@ -40,6 +43,21 @@
         <button id="reset-button">Reset Game</button>
     </div>
 
+        <!-- Modal -->
+    <div id="how-to-play-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="how-to-play-title" hidden>
+      <div class="modal-content">
+        <button class="modal-close" id="close-how-to-play" aria-label="Close">&times;</button>
+        <h2 id="how-to-play-title">How to Play</h2>
+        <ol>
+          <li>Your goal: finish with a higher score than the computer without exceeding 15.</li>
+          <li>You start. Click +1 to +5 to add to your score. The opponent will also add to your score at the same time!</li>
+          <li>When the total score becomes greater than 10, the turn switches to your opponent.</li>
+          <li>Play continues until the opponent's total becomes greater than 10 (end phase).</li>
+          <li>Scoring: Highest total <= 15 wins. A total over 15 is a bust. If both bust or tie, it's a draw.</li>
+          <li>Use Reset Game to start over.</li>
+        </ol>
+      </div>
+    </div>
 
     <script src="src/main.js" defer></script>
 </body>
