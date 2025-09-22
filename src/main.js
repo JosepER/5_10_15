@@ -49,7 +49,8 @@ updateTurnUI();
 
 function update(button) {
     if (gameOver){
-        alert("Game Over!"); // Add later on who won
+        alert("Game Over!");
+        return;
     }
     if (currentPlayer === "player") { // Player's turn
         playerScore += button;
@@ -79,6 +80,14 @@ function update(button) {
 
 function endGame() {
     gameOver = true;
+    setPlayButtonsDisabled(true);
+
+    // Disable the turn indicator(s)
+    computerTurn.setAttribute("aria-disabled", "true");
+    computerTurn.classList.add("turn-disabled");
+    playerTurn.setAttribute("aria-disabled", "true");
+    playerTurn.classList.add("turn-disabled");
+
     if ((playerScore > computerScore && playerScore <= 15) || (playerScore <= 15 && computerScore > 15)) {
         statusMessage.textContent = "You win!";
         statusMessage.style.color = "green";
@@ -95,6 +104,14 @@ function resetGame() {
   // Reset scores
   playerScore = 0;
   computerScore = 0;
+
+  setPlayButtonsDisabled(false);
+
+  // Re-enable turn indicators
+  [computerTurn, playerTurn].forEach(el => {
+    el.removeAttribute("aria-disabled");
+    el.classList.remove("turn-disabled");
+  });
   
   // Reset UI
   playerScoreDisplay.textContent = "0";
@@ -139,6 +156,10 @@ function escListener(e) {
 howToPlayModal?.addEventListener("click", (e) => {
   if (e.target === howToPlayModal) closeHowToPlayModal();
 });
+
+function setPlayButtonsDisabled(disabled) {
+  [oneButton, twoButton, threeButton, fourButton, fiveButton].forEach(b => b.disabled = disabled);
+}
 
 howToPlayButton.addEventListener("click", openHowToPlay);
 closeHowToPlay.addEventListener("click", closeHowToPlayModal);

@@ -67,6 +67,13 @@ h1 {
   transition: all 0.3s ease;
 }
 
+#computer-turn.turn-disabled,
+#player-turn.turn-disabled {
+  opacity: 0.5;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+
 .score-active {
   color: var(--accent);
   font-size: 1.8rem;
@@ -143,7 +150,12 @@ h1 {
   }
 }
 
-/* Add these styles to your existing CSS file */
+.button-container button:disabled {
+  background-color: #adb5bd;
+  cursor: not-allowed;
+  transform: none;
+  opacity: .7;
+}
 
 .reset-container {
   display: flex;
