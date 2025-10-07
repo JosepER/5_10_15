@@ -64,8 +64,11 @@ function update(button) {
         playerScore += opponentMoveValue; 
         playerScoreDisplay.textContent = playerScore;
         opponentMoveValueDisplay.textContent = opponentMoveValue;
-        if (playerScore > 10) {
+        if (playerScore > 10 && playerScore <= 15) {
             currentPlayer = "computer";
+        } else if (whoStartedRound === "player" && playerScore > 15) {
+            endGame();
+            return;
         }
 
     } else { // Computer's turn
@@ -76,8 +79,16 @@ function update(button) {
         computerScoreDisplay.textContent = computerScore;
         opponentMoveValueDisplay.textContent = opponentMoveValue;
         
-        if (computerScore > 10) {
+        if ((computerScore > 10) && (computerScore <= 15)) {
+          if(whoStartedRound === "player") {
+              endGame();
+              return
+          } else{
+              currentPlayer = "player";
+          }
+        } else if (whoStartedRound === "computer" && computerScore > 15) {
             endGame();
+            return;
         }
     }
     updateTurnUI();
