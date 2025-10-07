@@ -280,3 +280,10 @@ h1 {
   from { opacity: 0; transform: scale(.92); }
   to { opacity: 1; transform: scale(1); }
 }
+
+#who-started {
+  font-weight: 700;
+  font-size: 1.2rem;
+  font-style: bold;
+  color: green;
+}

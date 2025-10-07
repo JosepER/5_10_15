@@ -1,3 +1,4 @@
+let whoStarted = document.getElementById("who-started");
 let playerTurn = document.getElementById("player-turn");
 let computerTurn = document.getElementById("computer-turn");
 let playerScoreDisplay = document.getElementById("player-score-display");
@@ -21,6 +22,7 @@ let computerScore = 0;
 let opponentMoveValue = 0;
 let currentPlayer = "player";
 let gameOver = false;
+let whoStartedRound = "player";
 
 function updateTurnUI() {
     if (currentPlayer === "player") {
@@ -34,8 +36,12 @@ function updateTurnUI() {
         computerScoreDisplay.classList.add("score-inactive");
         computerScoreDisplay.classList.remove("score-active");
     } else {
+
+      if (whoStartedRound === "player") {
+          whoStarted.style.display = "block";
+      }
         computerTurn.style.display = "block";
-        computerTurn.style.color = "green";
+        computerTurn.style.color = "red";
         playerTurn.style.display = "none";
         
         // Highlight computer score, dim player score
@@ -105,6 +111,19 @@ function resetGame() {
   playerScore = 0;
   computerScore = 0;
 
+  // Alternate who starts first
+  if (whoStartedRound === "player") {
+      whoStartedRound = "computer";
+      currentPlayer = "computer";
+      whoStarted.textContent = "Computer starts!";
+      whoStarted.style.color = "red";
+  } else {
+      whoStartedRound = "player";
+      currentPlayer = "player";
+      whoStarted.textContent = "You start!";
+      whoStarted.style.color = "green";
+  }
+
   setPlayButtonsDisabled(false);
 
   // Re-enable turn indicators
@@ -119,7 +138,6 @@ function resetGame() {
   
   // Reset game state
   gameOver = false;
-  currentPlayer = "player";
   
   // Reset status messages
   statusMessage.textContent = "Game in progress...";
