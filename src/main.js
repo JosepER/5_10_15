@@ -64,8 +64,13 @@ function update(button) {
         playerScore += opponentMoveValue; 
         playerScoreDisplay.textContent = playerScore;
         opponentMoveValueDisplay.textContent = opponentMoveValue;
-        if (playerScore > 10 && playerScore <= 15) {
-            currentPlayer = "computer";
+        if (playerScore >= 10 && playerScore <= 15) {
+            if(whoStartedRound === "computer") {
+                endGame();
+                return;
+            } else{
+                currentPlayer = "computer";
+            }
         } else if (whoStartedRound === "player" && playerScore > 15) {
             endGame();
             return;
@@ -79,7 +84,7 @@ function update(button) {
         computerScoreDisplay.textContent = computerScore;
         opponentMoveValueDisplay.textContent = opponentMoveValue;
         
-        if ((computerScore > 10) && (computerScore <= 15)) {
+        if ((computerScore >= 10) && (computerScore <= 15)) {
           if(whoStartedRound === "player") {
               endGame();
               return
